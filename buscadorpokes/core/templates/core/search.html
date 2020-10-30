@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+<div class="container">
+  <div style="padding-top:50px; text-align:center;">
+    <h1>Buscador </h1>
+  </div>
+<!--    <h2>Ingrese nombre del Pokemon:</h2>
+    href="{% url 'signup' %}"
+  <p>Your ip address is <strong>{{ name }}</strong>, and you are probably in <strong>{{ image }}</strong> right now.</p>
+-->
+<form method="get">
+      Pokemon: <input type="text" name="pokename">
+      <button type="submit"  class="btn btn-primary">Buscar en PokeApi</button>
+  </form>
+  {% if poke %}
+    <h4>Pokemon encontrado</h4>
+    <p>Nombre: <strong>{{ poke.name }}</strong><br>
+       Experiencia base: <strong>{{ poke.base_experience }}</strong><br>
+       Typo: <strong> {% for tipo in poke.types %}{{tipo.type.name}} {% endfor %}</strong><br>
+       Habilidades: <strong> {% for hab in poke.abilities %}{{hab.ability.name}} {% endfor %}</strong><br>
+       Imagen: <img src="{{ poke.sprites.back_default }}">
+    </p>
+    {% else %}
+        <h4>Pokemon no encontrado</h4>
+    {% endif %}
+</div>
+{% endblock %}
